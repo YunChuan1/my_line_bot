@@ -1,1 +1,1 @@
-web: LineBotTemplate
+web: my_line_bot
