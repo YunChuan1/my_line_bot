@@ -1,7 +1,7 @@
 {
-  "name": "LineBotTemplate",
+  "name": "my_line_bot",
   "description": "Line Bot API template",
-  "repository": "https://github.com/kkdai/LineBotTemplate",
+  "repository": "https://github.com/YunChuan1/my_line_bot",
   "keywords": ["Line", "go", "static"],
   "buildpacks": [
     {
