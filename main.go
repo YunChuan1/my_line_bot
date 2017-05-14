@@ -140,11 +140,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				/*if err := app.handleText(message, event.ReplyToken, event.Source); err != nil {
 					log.Print(err)
 				}*/
-	/*		case *linebot.ImageMessage:
-				if err := app.handleImage(message, event.ReplyToken); err != nil {
+			case *linebot.ImageMessage:
+				if err := bot.ReplyMessage(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
-			case *linebot.VideoMessage:
+			/*case *linebot.VideoMessage:
 				if err := app.handleVideo(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
