@@ -103,9 +103,18 @@ func (app *KitchenSink) Callback(w http.ResponseWriter, r *http.Request) {
 		case linebot.EventTypeMessage:
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				if err := app.handleText(message, event.ReplyToken, event.Source); err != nil {
+				log.Println(message.Text)
+				inText := strings.ToLower(message.Text)
+/*1*/				if strings.Contains(inText, "三色線") || strings.Contains(inText, "三色線接法") || strings.Contains(inText, "三色線怎麼接") || strings.Contains(inText, "三色線接電視") || strings.Contains(inText, "三條線") || strings.Contains(inText, "三條線接法") || strings.Contains(inText, "三條線怎麼接") || strings.Contains(inText, "三條線接電視") || strings.Contains(inText, "AV線") || strings.Contains(inText, "AV線接法") || strings.Contains(inText, "AV線怎麼接") || strings.Contains(inText, "AV線接電視") || strings.Contains(inText, "AV端子") || strings.Contains(inText, "AV端子接法") || strings.Contains(inText, "AV端子怎麼接") || strings.Contains(inText, "AV端子接電視") || strings.Contains(inText, "電視接三色線") || strings.Contains(inText, "電視接三條線") || strings.Contains(inText, "電視接AV線") || strings.Contains(inText, "電視接AV端子") || strings.Contains(inText, "紅白黃") || strings.Contains(inText, "紅黃白") || strings.Contains(inText, "白黃紅") || strings.Contains(inText, "白紅黃") || strings.Contains(inText, "黃紅白") || strings.Contains(inText, "黃白紅") || strings.Contains(inText, "紅白黃線") || strings.Contains(inText, "紅黃白線") || strings.Contains(inText, "白黃紅線") || strings.Contains(inText, "白紅黃線") || strings.Contains(inText, "黃紅白線") || strings.Contains(inText, "黃白紅線"){
+					out := fmt.Sprintf(`接法為:黃接黃(影像);白接白(左聲道);紅接紅(右聲道)
+                                                            參考影片:https://www.youtube.com/watch?v=j80aHfxMRXE`)
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(out)).Do(); err != nil {
 					log.Print(err)
-				}
+					}
+/*2*/				}
+				/*if err := app.handleText(message, event.ReplyToken, event.Source); err != nil {
+					log.Print(err)
+				}*/
 			case *linebot.ImageMessage:
 				if err := app.handleImage(message, event.ReplyToken); err != nil {
 					log.Print(err)
