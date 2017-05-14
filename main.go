@@ -110,20 +110,6 @@ func main() {
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
-	
-	// serve /static/** files
-	staticFileServer := http.FileServer(http.Dir("static"))
-	http.HandleFunc("/static/", http.StripPrefix("/static/", staticFileServer).ServeHTTP)
-	// serve /downloaded/** files
-	downloadedFileServer := http.FileServer(http.Dir(app.downloadDir))
-	http.HandleFunc("/downloaded/", http.StripPrefix("/downloaded/", downloadedFileServer).ServeHTTP)
-
-	http.HandleFunc("/callback", app.Callback)
-	// This is just a sample code.
-	// For actually use, you must support HTTPS by using `ListenAndServeTLS`, reverse proxy or etc.
-	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
-		log.Fatal(err)
-	}
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
@@ -150,11 +136,11 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(out)).Do(); err != nil {
 					log.Print(err)
 					}
-/*2*/				}
+				}
 				/*if err := app.handleText(message, event.ReplyToken, event.Source); err != nil {
 					log.Print(err)
 				}*/
-			case *linebot.ImageMessage:
+	/*		case *linebot.ImageMessage:
 				if err := app.handleImage(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
@@ -175,9 +161,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					log.Print(err)
 				}
 			default:
-				log.Printf("Unknown message: %v", message)
+				log.Printf("Unknown message: %v", message)*/
 			}
-		case linebot.EventTypeFollow:
+		/*case linebot.EventTypeFollow:
 			if err := app.replyText(event.ReplyToken, "Got followed event"); err != nil {
 				log.Print(err)
 			}
@@ -198,7 +184,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				log.Print(err)
 			}
 		default:
-			log.Printf("Unknown event: %v", event)
+			log.Printf("Unknown event: %v", event)*/
 		}
 	}
 }
