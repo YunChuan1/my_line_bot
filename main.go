@@ -23,6 +23,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"fmt"
 
 	"github.com/line/line-bot-sdk-go/linebot"
 )
