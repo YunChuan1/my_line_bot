@@ -141,7 +141,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					log.Print(err)
 				}*/
 			case *linebot.ImageMessage:
-				if err := bot.ReplyMessage(message, event.ReplyToken); err != nil {
+				if err := bot.ActionTypeMessage(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
 			/*case *linebot.VideoMessage:
