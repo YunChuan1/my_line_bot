@@ -87,10 +87,21 @@ func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSin
 		downloadDir: downloadDir,
 	}, nil
 }
-
+/*
 // Callback function for http server
 func (app *KitchenSink) Callback(w http.ResponseWriter, r *http.Request) {
 	events, err := app.bot.ParseRequest(r)
+	if err != nil {
+		if err == linebot.ErrInvalidSignature {
+			w.WriteHeader(400)
+		} else {
+			w.WriteHeader(500)
+		}
+		return
+	}*/
+	
+	func callbackHandler(w http.ResponseWriter, r *http.Request) {
+	events, err := bot.ParseRequest(r)
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
 			w.WriteHeader(400)
