@@ -110,6 +110,20 @@ func main() {
 	port := os.Getenv("PORT")
 	addr := fmt.Sprintf(":%s", port)
 	http.ListenAndServe(addr, nil)
+	
+	// serve /static/** files
+	staticFileServer := http.FileServer(http.Dir("static"))
+	http.HandleFunc("/static/", http.StripPrefix("/static/", staticFileServer).ServeHTTP)
+	// serve /downloaded/** files
+	downloadedFileServer := http.FileServer(http.Dir(app.downloadDir))
+	http.HandleFunc("/downloaded/", http.StripPrefix("/downloaded/", downloadedFileServer).ServeHTTP)
+
+	http.HandleFunc("/callback", app.Callback)
+	// This is just a sample code.
+	// For actually use, you must support HTTPS by using `ListenAndServeTLS`, reverse proxy or etc.
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
