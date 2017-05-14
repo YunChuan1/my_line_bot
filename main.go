@@ -53,7 +53,7 @@ func main() {
 	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
 		log.Fatal(err)
 	}
-}
+}*/
 
 // KitchenSink app
 type KitchenSink struct {
@@ -61,7 +61,7 @@ type KitchenSink struct {
 	appBaseURL  string
 	downloadDir string
 }
-
+/*
 // NewKitchenSink function
 func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSink, error) {
 	apiEndpointBase := os.Getenv("ENDPOINT_BASE")
