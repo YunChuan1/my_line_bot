@@ -29,6 +29,7 @@ import (
 )
 
 var bot *linebot.Client
+var jack *linebot.imagemap
 /*
 func main() {	
 	app, err := NewKitchenSink(
