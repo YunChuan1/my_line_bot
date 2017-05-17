@@ -29,7 +29,7 @@ import (
 )
 
 var bot *linebot.Client
-var bot1 *linebot.Imagemap
+var bot1 *linebot.ActionTypeMessage
 /*
 func main() {	
 	app, err := NewKitchenSink(
