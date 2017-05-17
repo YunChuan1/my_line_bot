@@ -29,7 +29,7 @@ import (
 )
 
 var bot *linebot.Client
-var jack *linebot.imagemap
+var bot1 *linebot.imagemap
 /*
 func main() {	
 	app, err := NewKitchenSink(
@@ -142,7 +142,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					log.Print(err)
 				}*/
 			case *linebot.ImageMessage:
-				if err := jack.ActionTypeMessage(message, event.ReplyToken); err != nil {
+				if err := bot1.ActionTypeMessage(message, event.ReplyToken); err != nil {
 					log.Print(err)
 				}
 			/*case *linebot.VideoMessage:
