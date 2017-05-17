@@ -29,7 +29,7 @@ import (
 )
 
 var bot *linebot.Client
-var bot1 *linebot.ActionTypeMessage
+var bot1 *linebot.template
 /*
 func main() {	
 	app, err := NewKitchenSink(
